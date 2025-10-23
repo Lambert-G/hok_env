@@ -1,0 +1,74 @@
+ARG BASE_IMAGE=cpu_base
+ARG DEV_BASE=dev_base
+
+FROM ${BASE_IMAGE} as dev_base
+
+RUN wget https://github.com/prometheus/influxdb_exporter/releases/download/v0.10.0/influxdb_exporter-0.10.0.linux-amd64.tar.gz \
+    && tar -xf influxdb_exporter-0.10.0.linux-amd64.tar.gz \
+    && cp influxdb_exporter-0.10.0.linux-amd64/influxdb_exporter /usr/bin/ \
+    && rm -rf influxdb_exporter-0.10.0.linux-amd64*
+
+RUN apt update && \
+    apt install -y lsof && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install monitor
+RUN wget -q -O /usr/share/keyrings/grafana.key https://packages.grafana.com/gpg.key  && \
+    echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://packages.grafana.com/oss/deb stable main" >> /etc/apt/sources.list.d/grafana.list && \
+    apt update && \
+    apt install -y grafana influxdb && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /etc/apt/sources.list.d/grafana.list
+
+RUN pip3 install --no-cache-dir absl-py
+RUN pip3 install --no-cache-dir protobuf numpy
+# For aiarena
+RUN pip3 install --no-cache-dir pyyaml psutil h5py
+
+# rl_framework
+COPY ./rl_framework/ /rl_framework/
+
+RUN cd /rl_framework/common && python3 setup.py bdist_wheel && pip3 install --no-cache-dir dist/*.whl && python3 setup.py clean --all && rm -rf dist/
+RUN cd /rl_framework/learner && python3 setup.py bdist_wheel && pip3 install --no-cache-dir dist/*.whl && python3 setup.py clean --all && rm -rf dist/
+RUN cd /rl_framework/mem_pool && python3 setup.py bdist_wheel && pip3 install --no-cache-dir dist/*.whl && python3 setup.py clean --all && rm -rf dist/
+RUN cd /rl_framework/model_pool && python3 setup.py bdist_wheel && pip3 install --no-cache-dir dist/*.whl && python3 setup.py clean --all && rm -rf dist/
+RUN cd /rl_framework/predictor && python3 setup.py bdist_wheel && pip3 install --no-cache-dir dist/*.whl && python3 setup.py clean --all && rm -rf dist/
+
+RUN pip3 install --no-cache-dir --upgrade build && \
+    cd /rl_framework/monitor && python3 -m build && \
+    pip3 install --no-cache-dir dist/*.whl && rm -rf dist/
+
+# hok_env
+COPY hok_env /hok_env
+RUN pip3 install --no-cache-dir -e /hok_env
+
+# training code
+COPY ./aiarena/remote-gc-server /rl_framework/remote-gc-server
+COPY ./aiarena/battle /aiarena/battle
+COPY ./aiarena/process /aiarena/process
+COPY ./aiarena/__init__.py /aiarena/
+COPY ./aiarena/scripts /aiarena/scripts
+COPY ./aiarena/grafana/etc /etc/grafana
+COPY ./aiarena/grafana/dashboards /var/lib/grafana/dashboards
+
+WORKDIR /
+
+ENV GAMECORE_SERVER_BIND_ADDR=:23432
+ENV GAMECORE_SERVER_ADDR="127.0.0.1:23432"
+
+FROM dev_base as dev_base_v83
+ENV KAIWU_V83_GAMECORE=1
+
+# runtime /aiarena/code 3v3 dir
+FROM ${DEV_BASE} as code3v3
+ENV CAMP_DEFAULT_MODE=3v3
+COPY ./aiarena/3v3/ /aiarena/code/
+
+# runtime /aiarena/code 1v1 dir
+FROM ${DEV_BASE} as code1v1
+ENV CAMP_DEFAULT_MODE=1v1
+COPY ./aiarena/1v1/ /aiarena/code/
+
+FROM  ${DEV_BASE} as battle
+COPY ./aiarena/1v1/ /aiarena/1v1/
+COPY ./aiarena/3v3/ /aiarena/3v3/

@@ -1,0 +1,76 @@
+absl-py==2.3.1
+anaconda-anon-usage @ file:///croot/anaconda-anon-usage_1743190139881/work
+annotated-types @ file:///croot/annotated-types_1709542908624/work
+archspec @ file:///croot/archspec_1709217642129/work
+boltons @ file:///croot/boltons_1737061692168/work
+Brotli @ file:///croot/brotli-split_1736182456865/work
+certifi @ file:///croot/certifi_1754570635119/work/certifi
+cffi @ file:///croot/cffi_1736182485317/work
+charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+conda @ file:///croot/conda_1743715288469/work/conda-src
+conda-anaconda-telemetry @ file:///croot/conda-anaconda-telemetry_1744662537425/work
+conda-anaconda-tos @ file:///croot/conda-anaconda-tos_1744823864153/work
+conda-content-trust @ file:///croot/conda-content-trust_1714483159009/work
+conda-libmamba-solver @ file:///croot/conda-libmamba-solver_1745607008911/work/src
+conda-package-handling @ file:///croot/conda-package-handling_1731369017509/work
+conda_package_streaming @ file:///croot/conda-package-streaming_1731366181659/work
+cryptography @ file:///croot/cryptography_1740577825284/work
+distro @ file:///croot/distro_1714488253808/work
+filelock==3.13.1
+frozendict @ file:///croot/frozendict_1713194832637/work
+fsspec==2024.6.1
+gmpy2 @ file:///croot/gmpy2_1738085463648/work
+h5py==3.14.0
+# Editable Git install with no remote (hok==2.0.4)
+-e /mnt/d/hok_env_gamecore/hok_env/hok_env
+idna @ file:///croot/idna_1714398848350/work
+importlib_metadata==8.7.0
+influxdb==5.3.2
+intel-openmp==2024.0.2
+Jinja2==3.1.4
+jsonpatch @ file:///croot/jsonpatch_1714483231291/work
+jsonpointer==2.1
+libmambapy @ file:///croot/mamba-split_1734469461757/work/libmambapy
+loguru==0.7.3
+lz4==4.4.4
+markdown-it-py @ file:///croot/markdown-it-py_1684279902645/work
+MarkupSafe==2.1.5
+mdurl @ file:///opt/conda/conda-bld/mdurl_1659716024347/work
+menuinst @ file:///croot/menuinst_1738943416351/work
+mkl-service==2.4.0
+mkl_fft @ file:///io/mkl313/mkl_fft_1730824109137/work
+mkl_random @ file:///io/mkl313/mkl_random_1730823916628/work
+mpmath @ file:///croot/mpmath_1690848262763/work
+msgpack==1.1.1
+networkx @ file:///croot/networkx_1717597493534/work
+numpy @ file:///croot/numpy_and_numpy_base_1725470312869/work/dist/numpy-2.0.1-cp39-cp39-linux_x86_64.whl#sha256=d86a49760b169e0c4fb8c00d248077a0474f640071b7ef584afd5ad4f03b9428
+packaging @ file:///croot/packaging_1734472117206/work
+pillow @ file:///croot/pillow_1752524526621/work
+platformdirs @ file:///croot/platformdirs_1744273042065/work
+pluggy @ file:///croot/pluggy_1733169602837/work
+psutil==7.1.0
+pycosat @ file:///croot/pycosat_1736868416091/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pydantic @ file:///croot/pydantic_1734736067156/work
+pydantic_core @ file:///croot/pydantic-core_1734726052986/work
+Pygments @ file:///croot/pygments_1744664109463/work
+PySocks @ file:///tmp/build/80754af9/pysocks_1605305812635/work
+python-dateutil==2.9.0.post0
+pytz==2025.2
+PyYAML @ file:///croot/pyyaml_1728657952215/work
+pyzmq==27.1.0
+requests @ file:///croot/requests_1730999120400/work
+rich @ file:///croot/rich_1732638981168/work
+ruamel.yaml @ file:///croot/ruamel.yaml_1745960305322/work
+ruamel.yaml.clib @ file:///croot/ruamel.yaml.clib_1745937152469/work
+six==1.17.0
+sympy==1.13.1
+torch==2.5.1
+torchaudio==2.5.1
+torchvision==0.20.1
+tqdm @ file:///croot/tqdm_1738943501192/work
+typing_extensions==4.12.2
+urllib3 @ file:///croot/urllib3_1737133630106/work
+zipp==3.23.0
+zmq==0.0.0
+zstandard @ file:///croot/zstandard_1731356346222/work

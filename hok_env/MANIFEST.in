@@ -1,0 +1,11 @@
+recursive-include hok/hok3v3/lib *
+include hok/hok3v3/default_hero_config.json
+include hok/hok3v3/config.dat
+include hok/hok1v1/config.dat
+include hok/hok1v1/config.json
+include hok/hok1v1/default_hero_config.json
+include hok/hok1v1/lib/interface.cpython-36m-x86_64-linux-gnu.so
+include hok/hok1v1/lib/interface.cpython-37m-x86_64-linux-gnu.so
+include hok/hok1v1/lib/interface.cpython-38-x86_64-linux-gnu.so
+include hok/hok1v1/lib/interface.cpython-39-x86_64-linux-gnu.so
+include hok/hok1v1/unit_test/config.json

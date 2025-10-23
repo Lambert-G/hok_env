@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: hok
+Version: 2.0.4
+Summary: Honor of Kings: A MOBA game environment for multi-agent reinforcement learning.
+Project-URL: Homepage, https://github.com/tencent-ailab/hok_env
+Project-URL: Bug Tracker, https://github.com/tencent-ailab/hok_env/issues
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6, <3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: numpy
+Requires-Dist: loguru
+Dynamic: requires-python
